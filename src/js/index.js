@@ -19,7 +19,8 @@ selectRef.addEventListener('input', onSelectorInput)
 function renderBreedSelect(json) {
     const markup = json.map(el => `<option value='${el.id}'>${el.name}</option>`).join('')
     
-    selectRef.innerHTML = markup;
+    selectRef.insertAdjacentHTML('beforeend',markup);
+    selectRef.value = null;
 
     // selectSlimRef = new SlimSelect({
     //     select: selectRef,
@@ -36,7 +37,7 @@ function renderBreedSelect(json) {
 function hideLoader() {
     console.info('!!!then!!!');
     loaderPRef.classList.add('hidden');
-    selectRef.value = null;
+    // selectRef.value = null;
 }
 function showError() {
     console.error('!!!catch!!!');
@@ -72,9 +73,15 @@ function renderCatCard(json) {
 
     const markup = 
     `
-    <img src="${img.url}" alt="Cat breed ${img.alt}" width="300px">
-    <h2>${breedInfo.name}</h2>
-    <p>${breedInfo.description}</p>
+    <h2 class="header">${breedInfo.name}</h2>
+    
+    <div class="card">
+    <img src="${img.url}" alt="Cat breed ${img.alt}" class="image">
+    <div class="description">
+    <p class="text">${breedInfo.description}</p>
+    <p class="text"><b>Temperament:</b> ${breedInfo.temperament}</p>
+    </div>
+    </div>
     `
 
     cardRef.innerHTML = markup;
