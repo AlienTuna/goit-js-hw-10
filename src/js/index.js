@@ -35,12 +35,10 @@ function renderBreedSelect(json) {
 }
 
 function hideLoader() {
-    console.info('!!!then!!!');
     loaderPRef.classList.add('hidden');
     // selectRef.value = null;
 }
 function showError() {
-    console.error('!!!catch!!!');
     errorPRef.classList.remove('hidden');
 }
 function showLoader() {
@@ -53,7 +51,6 @@ function onSelectorInput(e) {
     showLoader();
 
     const chosenBreed = e.currentTarget.value;
-    console.info(chosenBreed);
 
     fetchCatByBreed(chosenBreed)
     .then(renderCatCard)
@@ -61,7 +58,6 @@ function onSelectorInput(e) {
     .finally(hideLoader)
 }
 function renderCatCard(json) {
-    console.log ('JSON IS',json)
 
     const breedInfo = json[0].breeds[0];
     const img = {
@@ -69,7 +65,6 @@ function renderCatCard(json) {
         alt: breedInfo.name,
     }
     
-    console.log(breedInfo);
 
     const markup = 
     `
